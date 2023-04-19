@@ -15,7 +15,7 @@ namespace Negocio1
     public class PokemonNegocio
     {
 
-        public List<Pokemon> listar()
+        public List<Pokemon> listar(string id = "")
         {
             List<Pokemon> lista = new List<Pokemon>();
             SqlConnection conexion = new SqlConnection();
@@ -26,7 +26,12 @@ namespace Negocio1
             {
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=POKEDEX_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select Numero, Nombre, P.Descripcion, UrlImagen, E.Descripcion Tipo, D.Descripcion Debilidad, P.IdTipo, P.IdDebilidad, P.Id From POKEMONS P, ELEMENTOS E, ELEMENTOS D Where E.Id = P.IdTipo And D.Id = P.IdDebilidad And P.activo = 1";
+                comando.CommandText = "Select Numero, Nombre, P.Descripcion, UrlImagen, E.Descripcion Tipo, D.Descripcion Debilidad, P.IdTipo, P.IdDebilidad, P.Id From POKEMONS P, ELEMENTOS E, ELEMENTOS D Where E.Id = P.IdTipo And D.Id = P.IdDebilidad And P.activo = 1 ";
+                if (id != "")
+                {
+                    comando.CommandText += " and P.id = " + id;
+                }
+
                 comando.Connection = conexion;
 
                 conexion.Open();
@@ -62,12 +67,6 @@ namespace Negocio1
             }
 
         }
-
-
-
-
-
-
         public List<Pokemon> filtrarSP()
         {
             List<Pokemon> lista = new List<Pokemon>();
@@ -110,18 +109,6 @@ namespace Negocio1
 
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
         public void agregar(Pokemon nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -159,7 +146,7 @@ namespace Negocio1
                 datos.setearParametro("@img", nuevo.UrlImagen);
                 datos.setearParametro("@idTipo", nuevo.Tipo.Id);
                 datos.setearParametro("@idDebilidad", nuevo.Debilidad.Id);
-            //    datos.setearParametro("@idEvolucion", null);
+                //    datos.setearParametro("@idEvolucion", null);
 
                 datos.ejecutarAccion();
             }
@@ -201,6 +188,31 @@ namespace Negocio1
             }
         }
 
+        public void modificarConSP(Pokemon poke)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("storedModificarPokemon");
+                datos.setearParametro("@numero", poke.Numero);
+                datos.setearParametro("@nombre", poke.Nombre);
+                datos.setearParametro("@desc", poke.Descripcion);
+                datos.setearParametro("@img", poke.UrlImagen);
+                datos.setearParametro("@idTipo", poke.Tipo.Id);
+                datos.setearParametro("@idDebilidad", poke.Debilidad.Id);
+                datos.setearParametro("@id", poke.Id);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarLectura();
+            }
+        }
 
 
         public void eliminar(int id)

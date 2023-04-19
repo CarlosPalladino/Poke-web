@@ -2,10 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <asp:GridView ID="dgvPokemons" runat="server" CssClass="table" AutoGenerateColumns="false"
+    <asp:GridView ID="dgvPokemons" runat="server" CssClass="table" DataKeyNames="Id"
+        AutoGenerateColumns="false"
         OnSelectedIndexChanged="dgvPokemons_SelectedIndexChanged"
         OnPageIndexChanging="dgvPokemons_PageIndexChanging"
-        Allowing="true" PageSize="5">
+        AllowPaging="true" PageSize="5">
         <Columns>
             <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
             <asp:BoundField HeaderText="Nombre" DataField="Numero" />

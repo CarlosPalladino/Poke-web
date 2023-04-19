@@ -21,7 +21,7 @@ namespace Pokemon_web
         protected void dgvPokemons_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id=dgvPokemons.SelectedDataKey.Value.ToString();
-            Response.Redirect("FormularioPokemon.aspx?id +id");
+            Response.Redirect("FormularioPokemon.aspx?id=" + id);
         }
 
         protected void dgvPokemons_PageIndexChanging(object sender, GridViewPageEventArgs e)

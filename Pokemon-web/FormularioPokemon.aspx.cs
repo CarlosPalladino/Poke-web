@@ -31,8 +31,29 @@ namespace Pokemon_web
                     ddlDebilidad.DataTextField = "Descripcion";
                     ddlDebilidad.DataBind();
 
-
+                    // si estamos modificando se hace . .
                 }
+                string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
+                if (id != null && !IsPostBack)
+                {
+                    
+                    PokemonNegocio negocio = new PokemonNegocio();
+                    Pokemon seleccionado = (negocio.listar(id))[0];
+                    //precargar campos 
+                    txtId.Text = id;
+                    txtNombre.Text = seleccionado.Nombre;
+                    txtDescripcion.Text = seleccionado.Descripcion;
+                    txtImagenUrl.Text = seleccionado.UrlImagen;
+                    txtNumero.Text = seleccionado.Numero.ToString();
+
+                    ddlTipos.SelectedValue = seleccionado.Tipo.Id.ToString();
+                    ddlDebilidad.SelectedValue = seleccionado.Debilidad.Id.ToString();
+
+                    txtImagenUrl_TextChanged1(sender, e);
+                }
+
+
+
             }
             catch (Exception ex)
             {
@@ -50,9 +71,10 @@ namespace Pokemon_web
             {
                 Pokemon nuevo = new Pokemon();
                 PokemonNegocio negocio = new PokemonNegocio();
+
                 nuevo.Numero = int.Parse(txtNumero.Text);
-                nuevo.Nombre = txtNombre.Text; 
-                nuevo.Descripcion = txtDescripcion.Text;    
+                nuevo.Nombre = txtNombre.Text;
+                nuevo.Descripcion = txtDescripcion.Text;
                 nuevo.UrlImagen = txtImagenUrl.Text;
 
                 nuevo.Tipo = new Elemento();
@@ -60,10 +82,21 @@ namespace Pokemon_web
                 nuevo.Debilidad = new Elemento();
                 nuevo.Debilidad.Id = int.Parse(ddlDebilidad.SelectedValue);
 
-                negocio.agregarSP(nuevo);
+                if (Request.QueryString["id"] != null)
+                {
+                    nuevo.Id = int.Parse(txtId.Text);
+                    negocio.modificarConSP(nuevo);
+                }
+                else
+ 
+
+                    negocio.agregarSP(nuevo);
+
+
+
 
                 Response.Redirect("PokemonLista.aspx", false);
-             
+
 
             }
             catch (Exception ex)
