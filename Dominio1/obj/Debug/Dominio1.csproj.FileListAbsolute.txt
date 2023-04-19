@@ -10,3 +10,9 @@ C:\Users\Carlos\Desktop\Pokemon\Dominio1\obj\Debug\Dominio1.csproj.AssemblyRefer
 C:\Users\Carlos\Desktop\Pokemon\Dominio1\obj\Debug\Dominio1.csproj.CoreCompileInputs.cache
 C:\Users\Carlos\Desktop\Pokemon\Dominio1\obj\Debug\Dominio1.dll
 C:\Users\Carlos\Desktop\Pokemon\Dominio1\obj\Debug\Dominio1.pdb
+C:\Users\Carlos\Desktop\Pokemon_web\Dominio1\bin\Debug\Dominio1.dll
+C:\Users\Carlos\Desktop\Pokemon_web\Dominio1\bin\Debug\Dominio1.pdb
+C:\Users\Carlos\Desktop\Pokemon_web\Dominio1\obj\Debug\Dominio1.csproj.AssemblyReference.cache
+C:\Users\Carlos\Desktop\Pokemon_web\Dominio1\obj\Debug\Dominio1.csproj.CoreCompileInputs.cache
+C:\Users\Carlos\Desktop\Pokemon_web\Dominio1\obj\Debug\Dominio1.dll
+C:\Users\Carlos\Desktop\Pokemon_web\Dominio1\obj\Debug\Dominio1.pdb

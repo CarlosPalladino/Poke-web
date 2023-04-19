@@ -17,6 +17,10 @@ namespace Pokemon_web
             PokemonNegocio negocio = new PokemonNegocio();
             ListaPokemon = negocio.filtrarSP();
 
+            //2da forma
+            repRepetidor.DataSource = ListaPokemon;
+            repRepetidor.DataBind();
+
         }
 
 

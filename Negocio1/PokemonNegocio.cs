@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using Dominio1;
 using System.Xml.Linq;
 using System.Collections;
+using System.Security.Cryptography;
 
 
 namespace Negocio1
@@ -47,7 +48,7 @@ namespace Negocio1
                     aux.Debilidad = new Elemento();
                     aux.Debilidad.Id = (int)lector["IdDebilidad"];
                     aux.Debilidad.Descripcion = (string)lector["Debilidad"];
-                    
+
 
                     lista.Add(aux);
                 }
@@ -61,7 +62,67 @@ namespace Negocio1
             }
 
         }
-        public void agregar(Pokemon nuevo)      
+
+
+
+
+
+
+        public List<Pokemon> filtrarSP()
+        {
+            List<Pokemon> lista = new List<Pokemon>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                //  string consulta = "select POKEMONS.Numero, POKEMONS.Nombre, POKEMONS.Descripcion, POKEMONS.UrlImagen, ELEMENTOS.Descripcion Tipo, D.Descripcion Debilidad, POKEMONS.IdTipo, POKEMONS.IdDebilidad, POKEMONS.Id from POKEMONS inner join ELEMENTOS on POKEMONS.IdTipo = ELEMENTOS.Id inner join ELEMENTOS D on POKEMONS.IdDebilidad = D.Id where Activo = 1 AND  ";
+
+
+
+                datos.setearProcedimiento("storeListar");
+                //datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Pokemon aux = new Pokemon();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Numero = datos.Lector.GetInt32(0);
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+                    if (!(datos.Lector["UrlImagen"] is DBNull))
+                        aux.UrlImagen = (string)datos.Lector["UrlImagen"];
+
+                    aux.Tipo = new Elemento();
+                    aux.Tipo.Id = (int)datos.Lector["IdTipo"];
+                    aux.Tipo.Descripcion = (string)datos.Lector["Tipo"];
+                    aux.Debilidad = new Elemento();
+                    aux.Debilidad.Id = (int)datos.Lector["IdDebilidad"];
+                    aux.Debilidad.Descripcion = (string)datos.Lector["Debilidad"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        public void agregar(Pokemon nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -83,8 +144,36 @@ namespace Negocio1
             {
                 datos.cerrarLectura();
             }
-
         }
+        public void agregarSP(Pokemon nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+
+                datos.setearProcedimiento("storedAltaPokemon");
+                datos.setearParametro("@numero", nuevo.Numero);
+                datos.setearParametro("@nombre", nuevo.Nombre);
+                datos.setearParametro("@desc", nuevo.Descripcion);
+                datos.setearParametro("@img", nuevo.UrlImagen);
+                datos.setearParametro("@idTipo", nuevo.Tipo.Id);
+                datos.setearParametro("@idDebilidad", nuevo.Debilidad.Id);
+            //    datos.setearParametro("@idEvolucion", null);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarLectura();
+            }
+        }
+
 
         public void modificar(Pokemon poke)
         {
@@ -107,10 +196,12 @@ namespace Negocio1
                 throw ex;
             }
             finally
-            { 
+            {
                 datos.cerrarLectura();
             }
         }
+
+
 
         public void eliminar(int id)
         {
@@ -128,7 +219,7 @@ namespace Negocio1
                 throw ex;
             }
         }
-   
+
         public void eliminarLogico(int id)
         {
             try
@@ -153,7 +244,7 @@ namespace Negocio1
             try
             {
                 string consulta = "select POKEMONS.Numero, POKEMONS.Nombre, POKEMONS.Descripcion, POKEMONS.UrlImagen, ELEMENTOS.Descripcion Tipo, D.Descripcion Debilidad, POKEMONS.IdTipo, POKEMONS.IdDebilidad, POKEMONS.Id from POKEMONS inner join ELEMENTOS on POKEMONS.IdTipo = ELEMENTOS.Id inner join ELEMENTOS D on POKEMONS.IdDebilidad = D.Id where Activo = 1 AND  ";
-;
+                ;
                 if (campo == "Número")
                 {
                     switch (criterio)
@@ -232,9 +323,13 @@ namespace Negocio1
 
 
     }
+
 }
-    
 
 
 
-    
+
+
+
+
+

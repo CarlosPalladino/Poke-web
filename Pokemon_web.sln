@@ -5,9 +5,9 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokemon-web", "Pokemon-web\Pokemon-web.csproj", "{779CE838-FC40-4B2E-91B5-3893D732C0FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio1", "..\PokemonPrueba\Negocio1\Negocio1.csproj", "{487B8D0F-0FEB-494E-A58C-D53A02869067}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio1", "Negocio1\Negocio1.csproj", "{487B8D0F-0FEB-494E-A58C-D53A02869067}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio1", "..\PokemonPrueba\Dominio1\Dominio1.csproj", "{7A5E5BBA-6ABB-4A6A-B5A0-669CB046C9DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio1", "Dominio1\Dominio1.csproj", "{7A5E5BBA-6ABB-4A6A-B5A0-669CB046C9DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

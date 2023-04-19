@@ -2,10 +2,17 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <asp:GridView ID="dgvPokemons" runat="server" CssClass="table" AutoGenerateColumns="false"></asp:GridView>
-    <columns>
-        <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+    <asp:GridView ID="dgvPokemons" runat="server" CssClass="table" AutoGenerateColumns="false"
+        OnSelectedIndexChanged="dgvPokemons_SelectedIndexChanged"
+        OnPageIndexChanging="dgvPokemons_PageIndexChanging"
+        Allowing="true" PageSize="5">
+        <Columns>
+            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+            <asp:BoundField HeaderText="Nombre" DataField="Numero" />
+            <asp:BoundField HeaderText="Tipo" DataField="Tipo.Descripcion" />
+            <asp:CommandField HeaderText="Accion" ShowSelectButton="true" SelectText="Escribi algo.." />
 
-        <asp:BoundField HeaderText="Tipo" DataField="Tipo.Descripcion" />
-    </columns>
+        </Columns>
+    </asp:GridView>
+    <a href="FormularioPokemon.aspx" class="btn btn-primary">Agregar</a>
 </asp:Content>
