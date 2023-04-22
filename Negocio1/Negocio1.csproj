@@ -43,8 +43,10 @@
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
     <Compile Include="ElementoDatos.cs" />
+    <Compile Include="EmailService.cs" />
     <Compile Include="PokemonNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TraineNegocio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dominio1\Dominio1.csproj">
