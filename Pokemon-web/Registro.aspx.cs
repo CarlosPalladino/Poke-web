@@ -29,8 +29,8 @@ namespace Pokemon_web
                 user.Email = txtEmail.Text;
                 user.Pass = txtPassword.Text;
 
-                int id = TraineNegocio.insertarNuevo(user);
-
+               user.Id= TraineNegocio.insertarNuevo(user);
+                Session.Add("trainee", user);
 
                 EmailService.armarCorreo(user.Email, "Bienvenid@", "hola, testc damos la bienvenida");
                 EmailService.enviarEmail();

@@ -4,7 +4,7 @@
 
 <html lang="es">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - Pokemon web</title>
@@ -13,7 +13,7 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
@@ -48,7 +48,29 @@
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Registro.aspx">registro</a></li>
+
+
+
+                        <div class="d-flex">
+                            <% 
+                                if (!Negocio1.Seguridad.sesionActiva(Session["trainee"]))
+                                {%>
+                            <a class="nav-link" runat="server" href="~/Registro.aspx">registro</a></>
+                       <a class="nav-link" runat="server" href="~/Login.aspx">Login</a></>
+                        <%
+                            }
+                            else
+                            {
+                        %>
+                            <asp:Button Text="Salir" ID="btnSalir" runat="server" OnClick="btnSalir_Click" CssClass="btn btnf-primary me-2" />
+                            <%                      
+                                } %>
+
+                            <asp:Image ID="imgPerfil" style="height:40px; width:40px; border-radius:50%" runat="server"
+                                />
+                        </div>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/miPerfil.aspx">Mi  perfil</a></li>
+
                         <li class="nav-item"><a class="nav-link" runat="server" href="PokemonLista.aspx">Lista de pokemon</a></li>
                     </ul>
                 </div>

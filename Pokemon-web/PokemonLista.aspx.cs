@@ -15,6 +15,11 @@ namespace Pokemon_web
         public bool FiltroAvanzado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Seguridad.esAdmin(Session["trainee"]))
+            {
+                Session.Add("error","se requiere permiso ");
+                Response.Redirect("Error.aspx");
+            }
 
             FiltroAvanzado = chkAvanzado.Checked;
             if (!IsPostBack)
