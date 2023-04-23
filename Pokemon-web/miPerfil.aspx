@@ -21,9 +21,9 @@
             </div>
             <div class="mb-3">
                 <label for="ddlTipos" class="form-label">Fecha de nacimiento</label>
-                <asp:DropDownList ID="ddlTipos" CssClass="form-select" runat="server"></asp:DropDownList>
+                <asp:TextBox ID="txtFechaNacimiento"    TextMode="Date"  CssClass="form-control" runat="server"/>
             </div>
-        
+       
             <div class="mb-3">
                 <asp:Button Text="Aceptar" ID="btnAceptar" CssClass="btn btn-primary" OnClick="btnAceptar_Click" runat="server" />
                 <a href="WebForm1.aspx">Cancelar</a>
@@ -37,10 +37,10 @@
                 <ContentTemplate>
                     <div class="mb-3">
                         <label class="form-label">Url Imagen</label>
-                            <input type="file" id="txtImage" runat="server" class="form-control" />
+                            <input type="file" id="txtImage"         runat="server" class="form-control" />
                     </div>
                     <asp:Image ImageUrl="https://comunidades.cepal.org/ilpes/sites/default/files/users/pictures/default_0.png"
-                        runat="server" ID="imgNuevoPerfil"  Width="60%" />
+                        runat="server" ID="imgNuevoPerfil"     Width="60%" />
 
                 </ContentTemplate>
             </asp:UpdatePanel>
