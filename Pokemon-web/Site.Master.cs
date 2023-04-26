@@ -16,7 +16,7 @@ namespace Pokemon_web
 
             imgPerfil.ImageUrl = "https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg";
 
-            if (!(Page is Login || Page is Registro))
+            if (!(Page is Login || Page is Registro || Page is Error))
             {
                 if (!Seguridad.sesionActiva(Session["trainee"]))
                     Response.Redirect("Login.aspx", false);

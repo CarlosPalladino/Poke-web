@@ -69,9 +69,8 @@ namespace Pokemon_web
             catch (Exception ex)
             {
                 Session.Add("Error", ex);
-                throw;
-                //mandar a vista de error
-
+                
+                Response.Redirect("Error.aspx", false);
             }
         }
 
@@ -113,9 +112,8 @@ namespace Pokemon_web
             catch (Exception ex)
             {
                 Session.Add("Error", ex);
-                throw;
+                Response.Redirect("Error.aspx", false);
 
-                throw;
             }
         }
 
@@ -147,7 +145,7 @@ namespace Pokemon_web
             {
 
                 Session.Add("error", ex);
-                throw;
+                Response.Redirect("Error.aspx", false);
             }
         }
 
@@ -165,7 +163,9 @@ namespace Pokemon_web
             }
             catch (Exception ex)
             {
-                Session.Add("error", ex);
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
+
             }
 
 

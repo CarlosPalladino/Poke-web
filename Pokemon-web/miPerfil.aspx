@@ -1,6 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="miPerfil.aspx.cs" Inherits="Pokemon_web.miPerfil" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+
+    <script>
+        function validar() {
+            const txtApellido = document.GetElementById("txtApellido");
+            if (txtApellido.value == "") {
+                alert("Tenes que cargar un apellido")
+                return false
+            }
+            return true;
+        }
+    </script>
     <h1>Llegaste al perfil </h1>
 
     
@@ -14,10 +25,16 @@
             <div class="mb-3">
                 <label for="txtNombre" class="form-label">Nombre</label>
                 <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
+                <asp:RequiredFieldValidator ErrorMessage="el nombre es requerido " ControlToValidate="txtNombre" runat="server" />
+                
             </div>
             <div class="mb-3">
                 <label for="txtApellido" class="form-label">Apellido</label>
-                <asp:TextBox runat="server" ID="txtApellido" CssClass="form-control" />
+                <asp:TextBox runat="server" ClientIDMode="Static" ID="txtApellido" CssClass="form-control" />
+               // validación comun
+                <asp:RangeValidator ErrorMessage="fuera de rango" MinimumValue="2" MaximumValue="20" Type="Integer" ControlToValidate="txtApellido" runat="server" />       
+                <asp:RegularExpressionValidator ErrorMessage="Solo numeros"  ValidationExpression="^[0-9]+$" ControlToValidate="txtApellido" runat="server" />
+
             </div>
             <div class="mb-3">
                 <label for="ddlTipos" class="form-label">Fecha de nacimiento</label>
@@ -25,7 +42,7 @@
             </div>
        
             <div class="mb-3">
-                <asp:Button Text="Aceptar" ID="btnAceptar" CssClass="btn btn-primary" OnClick="btnAceptar_Click" runat="server" />
+                <asp:Button Text="Aceptar" ID="btnAceptar"  OnClientClick="return validar()" CssClass="btn btn-primary" OnClick="btnAceptar_Click" runat="server" />
                 <a href="WebForm1.aspx">Cancelar</a>
             </div>
 

@@ -22,29 +22,33 @@ namespace Pokemon_web
             Trainee trainee = new Trainee();
             TraineNegocio negocio = new TraineNegocio();
 
-            try
+            // try
+            //   {
+            if (Validacion.ValidaTextoVacio(txtEmail)|| Validacion.ValidaTextoVacio(txtPassword))
             {
-                trainee.Email = txtEmail.Text;
-                trainee.Pass = txtPassword.Text;
-                
-               if(negocio.Login(trainee))
-                {
-                      
-                    Session.Add("trainee", trainee);
-                    Response.Redirect("miPerfil.aspx", false);
-                }
-                else
-                {
-                    Session.Add("error", "user o pass incorrecto");
-                    Response.Redirect("error.aspx");                 
-                }
+                Session.Add("error", "Debes completar ambos campos..");
+                Response.Redirect("Error.aspx");
             }
+            
+            trainee.Email = txtEmail.Text;
+            trainee.Pass = txtPassword.Text;
 
-            catch (Exception ex)
+            if (negocio.Login(trainee))
             {
 
-                Session.Add("error", ex.ToString());
+                Session.Add("trainee", trainee);
+                Response.Redirect("miPerfil.aspx", false);
+            }
+            else
+            {
+                // throw new Exception("eRROR lalal");
+                Session.Add("error", "user o pass incorrecto");
+                Response.Redirect("error.aspx", false);
             }
         }
+
+     
+
+  
     }
 }
