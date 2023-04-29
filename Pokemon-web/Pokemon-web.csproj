@@ -299,11 +299,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\tp2\Pokemon\Dominio1\Dominio1.csproj">
+    <ProjectReference Include="..\Dominio1\Dominio1.csproj">
       <Project>{7a5e5bba-6abb-4a6a-b5a0-669cb046c9dd}</Project>
       <Name>Dominio1</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\tp2\Pokemon\Negocio1\Negocio1.csproj">
+    <ProjectReference Include="..\Negocio1\Negocio1.csproj">
       <Project>{487b8d0f-0feb-494e-a58c-d53a02869067}</Project>
       <Name>Negocio1</Name>
     </ProjectReference>
