@@ -29,7 +29,8 @@
         <div class="col-3">
             <div class="mb-3">
                 <asp:Label Text="Campo" runat="server" />
-                <asp:DropDownList css="form-control" AutoPostBack="true" ID="ddlCampo" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged"
+                <asp:DropDownList css="form-control" AutoPostBack="true"
+                    ID="ddlCampo" OnSelectedIndexChanged="ddlCampo_SelectedIndexChanged"
                     runat="server">
                     <asp:ListItem Text="Nombre" />
                     <asp:ListItem Text="Tipo" />
@@ -89,7 +90,7 @@
             <asp:BoundField HeaderText="Nombre" DataField="Numero" />
             <asp:BoundField HeaderText="Tipo" DataField="Tipo.Descripcion" />
             <asp:CheckBoxField HeaderText="Activo" DataField="Activo" />
-            <asp:CommandField HeaderText="Accion" ShowSelectButton="true" SelectText="Escribi algo.." />
+            <asp:CommandField HeaderText="Accion" ShowSelectButton="true" SelectText="Detelle " />
 
         </Columns>
     </asp:GridView>
